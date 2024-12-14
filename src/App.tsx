@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "./components/theme-provider";
 import Landing from "./components/landing";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { StatsProvider } from "./contexts/statsContext";

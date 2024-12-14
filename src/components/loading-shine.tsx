@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function LoadingShine() {
     return (
         <div className="flex justify-center items-center w-32 h-32">

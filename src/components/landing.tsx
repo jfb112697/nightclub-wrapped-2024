@@ -62,6 +62,7 @@ export default function Landing() {
                             Found player: {playerData.name}
                         </div>
                         <textarea
+                            className="text-black"
                             defaultValue={JSON.stringify(playerData)}
                         ></textarea>
                     </>

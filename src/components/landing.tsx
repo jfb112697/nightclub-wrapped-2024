@@ -62,65 +62,67 @@ export default function Landing() {
           <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg blur opacity-75 animate-pulse" />
           <div className="relative px-4 py-3 md:px-6 md:py-4 bg-black rounded-lg">
             <p className="text-sm md:text-base text-gray-100 text-center">
-              Enter your tag to see your Nightclub journey
+              {(!playerData &&
+                "Enter your tag to see your Nightclub journey") ||
+                "Don't forget to share your wrapped!"}
             </p>
           </div>
         </div>
+        {!playerData && (
+          <form
+            onSubmit={handleSearch}
+            className="w-full max-w-md space-y-4 px-4"
+          >
+            <div className="relative">
+              {suggestions.length > 0 && showSuggestions && showAbove && (
+                <div className="absolute py-4 bottom-full mb-1 w-full bg-gray-800 rounded-md border border-gray-700 shadow-lg z-20">
+                  {suggestions.map((player) => (
+                    <button
+                      key={player.name}
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                        handleSuggestionClick(player.name);
+                      }}
+                      className="w-full text-left px-4 py-2 hover:bg-gray-700 transition-colors duration-150 first:rounded-t-md last:rounded-b-md"
+                    >
+                      {player.name}
+                    </button>
+                  ))}
+                </div>
+              )}
 
-        <form
-          onSubmit={handleSearch}
-          className="w-full max-w-md space-y-4 px-4"
-        >
-          <div className="relative">
-            {suggestions.length > 0 && showSuggestions && showAbove && (
-              <div className="absolute py-4 bottom-full mb-1 w-full bg-gray-800 rounded-md border border-gray-700 shadow-lg z-20">
-                {suggestions.map((player) => (
-                  <button
-                    key={player.name}
-                    onMouseDown={(e) => {
-                      e.preventDefault();
-                      handleSuggestionClick(player.name);
-                    }}
-                    className="w-full text-left px-4 py-2 hover:bg-gray-700 transition-colors duration-150 first:rounded-t-md last:rounded-b-md"
-                  >
-                    {player.name}
-                  </button>
-                ))}
-              </div>
-            )}
+              <Input
+                ref={inputRef}
+                type="text"
+                placeholder="Enter your tag"
+                value={tag}
+                onChange={(e) => setTag(e.target.value)}
+                onFocus={() => setShowSuggestions(true)}
+                className="w-full bg-gray-800 border-gray-700 text-white"
+              />
 
-            <Input
-              ref={inputRef}
-              type="text"
-              placeholder="Enter your tag"
-              value={tag}
-              onChange={(e) => setTag(e.target.value)}
-              onFocus={() => setShowSuggestions(true)}
-              className="w-full bg-gray-800 border-gray-700 text-white"
-            />
-
-            {suggestions.length > 0 && showSuggestions && !showAbove && (
-              <div className="absolute top-full mt-1 w-full bg-gray-800 rounded-md border border-gray-700 shadow-lg z-20">
-                {suggestions.map((player) => (
-                  <button
-                    key={player.name}
-                    onMouseDown={(e) => {
-                      e.preventDefault();
-                      handleSuggestionClick(player.name);
-                    }}
-                    className="w-full text-left px-4 py-2 hover:bg-gray-700 transition-colors duration-150 first:rounded-t-md last:rounded-b-md"
-                  >
-                    {player.name}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <div className="mt-4">
-            <NeonButton />
-          </div>
-        </form>
+              {suggestions.length > 0 && showSuggestions && !showAbove && (
+                <div className="absolute top-full mt-1 w-full bg-gray-800 rounded-md border border-gray-700 shadow-lg z-20">
+                  {suggestions.map((player) => (
+                    <button
+                      key={player.name}
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                        handleSuggestionClick(player.name);
+                      }}
+                      className="w-full text-left px-4 py-2 hover:bg-gray-700 transition-colors duration-150 first:rounded-t-md last:rounded-b-md"
+                    >
+                      {player.name}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className="mt-4">
+              <NeonButton />
+            </div>
+          </form>
+        )}
 
         {isLoading && (
           <div className="mt-8 flex justify-center">

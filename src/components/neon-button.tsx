@@ -24,7 +24,7 @@ export default function NeonButton({ className, ...props }: NeonButtonProps) {
     <Button
       asChild
       className={cn(
-        "relative px-8 py-4 text-xl font-bold text-white bg-transparent border-2 border-transparent rounded-full overflow-hidden",
+        "relative px-8 py-4 text-xl font-bold text-white bg-transparent border-2 border-transparent rounded-full overflow-hidden flex items-center justify-center",
         className,
       )}
       style={{
@@ -46,7 +46,7 @@ export default function NeonButton({ className, ...props }: NeonButtonProps) {
           hover: { scale: 1.05 },
           press: { scale: 0.95 },
         }}
-        className="w-full h-full"
+        className="w-full h-full flex items-center justify-center"
       >
         <motion.span
           className="absolute inset-0 z-0"
@@ -69,7 +69,7 @@ export default function NeonButton({ className, ...props }: NeonButtonProps) {
           }}
         />
         <motion.span
-          className="relative z-10 block"
+          className="relative z-10 block whitespace-nowrap"
           style={{
             WebkitTextStroke: "1px rgba(255, 255, 255, 0.3)",
           }}
@@ -90,7 +90,7 @@ export default function NeonButton({ className, ...props }: NeonButtonProps) {
           Generate Your Wrapped
         </motion.span>
         <motion.div
-          className="absolute inset-0 z-20"
+          className="absolute inset-0 z-20 pointer-events-none"
           variants={{
             initial: { opacity: 0 },
             hover: {
@@ -107,7 +107,7 @@ export default function NeonButton({ className, ...props }: NeonButtonProps) {
           transition={{ duration: 0.3 }}
         />
         <motion.div
-          className="absolute inset-0 z-30"
+          className="absolute inset-0 z-30 pointer-events-none"
           initial="initial"
           animate={rippleControls}
           variants={{

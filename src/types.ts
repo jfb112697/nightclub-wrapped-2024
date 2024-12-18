@@ -1,17 +1,26 @@
-export interface PlayerStats {
-    ids: number[];
+export interface TournamentPlacement {
+    placement: number | null;
+    tournamentName: string | null;
+}
+
+export interface BracketStats {
     rival: {
-        name: string;
+        tag: string;
         matches: number;
-    };
+    } | null;
     setsWon: number;
-    fullName: string;
     setsPlayed: number;
-    outplacedSeed: number;
-    tournamentWins: number;
-    tournamentsWon: string[];
-    topSevenFinishes: number;
-    tournamentsAttended: string[];
+    bracketsWon: number;
+    bracketCount: number;
+    bestPlacement: TournamentPlacement;
+    topEightFinishes: number;
+    timesOutplacedSeed: number;
+}
+
+export interface PlayerStats {
+    main: BracketStats;
+    redemption: BracketStats;
+    tournamentsAttended: number;
 }
 
 export interface PlayerMapping {
